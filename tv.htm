@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Ao Vivo - TVplay</title>
+
+	<link rel="icon" type="imagem/svg" href="../imagens/icone.svg" />
+    <link rel="stylesheet" href="codigos/font.css">
+    <link rel="stylesheet" href="codigos/app.css">
+
+    <script src="codigos/jquery.js"></script>
+    <script src="codigos/navigation.js"></script>
+    <script src="codigos/util.js"></script>
+  </head>
+  <body>
+	<style>img[src*="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"] {display: none;}</style>
+    <div id="container">
+      <div id="sidebar">
+        <div id="icons">
+          <div><span class="fa fa-th"></span><br><br><br><br></div>
+          <div><span class="fa fa-home"></span></div>
+          <div><span class="fa fa-star"></span></div>
+          <div><span class="fa fa-tv"></span></div>
+          <div><span class="fa fa-film"></span></div>
+        </div>
+        <div id="menu">
+          <div class="item"><i class="fa fa-th"></i>TVonline<br><br><br><br></div>
+          <div class="item"><i class="fa fa-home"></i>Início</div>
+          <div class="item"><i class="fa fa-star"></i>Favoritos</div>
+          <div class="item"><i class="fa fa-tv"></i>TV Online</div>
+          <div class="item"><i class="fa fa-film"></i>Filmes Online</div>
+        </div>
+      </div>
+      <div id="inicio" class="mainbox">
+        <div id="content">
+          <div class="contentgroup" data-content-row="1">
+            <h1 id="divfavoritos">FAVORITOS</h1>
+            <div class="content">
+				<span id="DFavoritos"></span>
+            </div>
+          </div-->
+          <div class="contentgroup" data-content-row="3">
+            <h1 id="divtvonline">TV ONLINE</h1>
+            <div class="content">
+				<span id="DCanais"></span>
+            </div>
+          </div>
+          <div class="contentgroup" data-content-row="2">
+            <h1 id="divfilmes">FILMES ONLINE</h1>
+            <div class="content">
+				<span id="DFilmes"></span>
+            </div>
+          </div><br><br>
+        </div>
+      </div>
+    </div>
+<script>
+$.getJSON("Bookmarks", function(obj) {
+var favoritos = obj.roots.bookmark_bar.children[0].children;
+var maxCH = favoritos.length;
+var html = "", divide = 0;
+for (var i = 0; i < maxCH; i++) {
+	if (favoritos[i].type!="folder" && favoritos[i].name.indexOf("TVplay")<=0) {
+		npage = favoritos[i].url;
+		tpage = npage.split("\/");
+		ipage = npage.split("\/");
+		tpage = tpage[2].split("\.");
+		ipage = ipage[2];
+		if (tpage[0]=="www") {tpage = tpage[1];} else {tpage = tpage[0];}
+		if (favoritos[i].name=="Alienigenas do Passado") {ipage = "ancient.aliens.aovivo";tpage = "Alienigenas do Passado";}
+		if (favoritos[i].name=="A Turma do Chaves") {ipage = "chaves.aovivo";tpage = "A Turma do Chaves";}
+		html += "<div class='item' id='"+npage+"' onclick=window.location.href='"+npage+"'>";
+		//html += "<iframe src='"+npage.toLowerCase()+"' width='100%' height='100%' loading='lazy'></iframe>";
+	    html += "<img src='imagens/"+ipage+".png' width='100%' height='100%'></img>";
+		html += "<div class='letra'>"+tpage.toUpperCase()+"<br>"+ipage+"</div>";
+		html += "</div>";
+		divide++;
+		if (divide==3) {html += "<br><img height='30'></img><br>";divide = 0;}
+	}
+}
+DFavoritos.innerHTML = html;
+
+var filmes = obj.roots.bookmark_bar.children[3].children[1].children;
+var maxFM = filmes.length;
+var html = "", divide = 0;
+for (var i = 0; i < maxFM; i++) {
+	npage = filmes[i].url;
+	tpage = npage.split("\/");
+	ipage = npage.split("\/");
+	tpage = tpage[2].split("\.");
+	ipage = ipage[2];
+	if (tpage[0]=="www") {tpage = tpage[1];} else {tpage = tpage[0];}
+	html += "<div class='item' id='"+npage+"' onclick=window.location.href='"+npage+"'>";
+	html += "<img src='../imagens/tvonline/filmes/"+ipage+".png' width='100%' height='100%'></img>";
+	html += "<div class='letra'>"+tpage.toUpperCase()+"<br>"+ipage+"</div>";
+	html += "</div>";
+	divide++;
+	if (divide==3) {html += "<br><img height='30'></img><br>";divide = 0;}
+	
+}
+DFilmes.innerHTML = html;
+
+var canais = obj.roots.bookmark_bar.children[3].children[0].children;
+var maxTV = canais.length;
+var html = "", divide = 0;
+for (var i = 0; i < maxTV; i++) {
+	npage = canais[i].url;
+	tpage = npage.split("\/");
+	ipage = npage.split("\/");
+	tpage = tpage[2].split("\.");
+	ipage = ipage[2];
+	if (tpage[0]=="www") {tpage = tpage[1];} else {tpage = tpage[0];}
+	html += "<div class='item' id='"+npage+"' onclick=window.location.href='"+npage+"'>";
+	html += "<img src='../imagens/tvonline/canais/"+ipage+".png' width='100%' height='100%'></img>";
+	html += "<div class='letra'>"+tpage.toUpperCase()+"<br>"+ipage+"</div>";
+	html += "</div>";
+	divide++;
+	if (divide==10) {html += "<br><img height='30'></img><br>";divide = 0;}
+}
+DCanais.innerHTML = html;
+});
+
+(function($) {
+	document.querySelector("#menu > div:nth-child(1)").addEventListener("keypress", function(e) {
+		if(e.which == 13) {window.location.replace("canais.htm");}
+	}, false);
+	document.querySelector("#icons > div:nth-child(1)").addEventListener("click", function() {
+		window.location.replace("canais.htm");
+	}, false);
+	document.querySelector("#menu > div:nth-child(2)").addEventListener("keypress", function(e) {
+		if(e.which == 13) {window.location.reload();}
+	}, false);
+	document.querySelector("#icons > div:nth-child(2)").addEventListener("click", function() {
+		DFavoritos.hidden = ""; DFilmes.hidden = ""; DCanais.hidden = ""; divfavoritos.hidden = ""; divfilmes.hidden = ""; divtvonline.hidden = ""; window.location.href="#inicio";
+	}, false);
+	document.querySelector("#menu > div:nth-child(3)").addEventListener("keypress", function(e) {
+		if(e.which == 13) {window.location.reload();}
+	}, false);
+	document.querySelector("#icons > div:nth-child(3)").addEventListener("click", function() {
+		DFavoritos.hidden = ""; DFilmes.hidden = "true"; DCanais.hidden = "true"; divfavoritos.hidden = ""; divfilmes.hidden = "true"; divtvonline.hidden = "true"; window.location.href="#inicio";
+	}, false);
+	document.querySelector("#menu > div:nth-child(4)").addEventListener("keypress", function(e) {
+		if(e.which == 13) exibefilmes();
+	}, false);
+	document.querySelector("#icons > div:nth-child(4)").addEventListener("click", function() {
+		DFavoritos.hidden = "true"; DFilmes.hidden = ""; DCanais.hidden = "true"; divfavoritos.hidden = "true"; divfilmes.hidden = ""; divtvonline.hidden = "true";window.location.href="#inicio";
+	}, false);
+	document.querySelector("#menu > div:nth-child(5)").addEventListener("keypress", function(e) {
+		if(e.which == 13) exibeteve();
+	}, false);
+	document.querySelector("#icons > div:nth-child(5)").addEventListener("click", function() {
+		DFavoritos.hidden = "true"; DFilmes.hidden = "true"; DCanais.hidden = ""; divfavoritos.hidden = "true"; divfilmes.hidden = "true"; divtvonline.hidden = ""; window.location.href="#inicio";
+	}, false);
+	function exibefilmes() {
+			$('.contentgroup[data-content-row=1]').addClass('fading-out').fadeOut(10);
+			window.requestAnimationFrame(function() {
+				var $div = $('<div>').addClass('animate placeholder').prependTo('#content');
+				window.requestAnimationFrame(function() {
+					$div.removeClass('placeholder').on('transitionend', function() {
+						$('#sidebar').removeClass('focused');
+						$('.contentgroup[data-content-row=2]').fadeIn(10);
+						$('.contentgroup[data-content-row=2]').removeClass('fading-out');
+						$('.contentgroup[data-content-row=2]').addClass('checked');
+						$('.contentgroup[data-content-row=2]').focus();
+					});
+				});
+			});
+	}
+	function exibeteve() {
+			$('.contentgroup[data-content-row=1]').addClass('fading-out').fadeOut(10);
+			$('.contentgroup[data-content-row=2]').addClass('fading-out').fadeOut(10);
+			window.requestAnimationFrame(function() {
+				var $div = $('<div>').addClass('animate placeholder').prependTo('#content');
+				window.requestAnimationFrame(function() {
+					$div.removeClass('placeholder').on('transitionend', function() {
+						$('#sidebar').removeClass('focused');
+						$('.contentgroup[data-content-row=3]').fadeIn(10);
+						$('.contentgroup[data-content-row=3]').removeClass('fading-out');
+						$('.contentgroup[data-content-row=3]').addClass('checked');
+					});
+				});
+			});
+	}
+	document.addEventListener('keypress', function(e){
+		if (e.which == 13 && e.target.id!="") {
+			window.location.href=e.target.id;
+		}
+	}, false);
+})(jQuery);
+</script>
+  </body>
+</html>
