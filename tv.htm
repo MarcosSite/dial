@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Ao Vivo - TVplay</title>
 
-	<link rel="icon" type="imagem/svg" href="../imagens/icone.svg" />
-    <link rel="stylesheet" href="../codigos/font.css">
-    <link rel="stylesheet" href="../codigos/app.css">
+	<link rel="icon" type="imagem/svg" href="../dial/imagens/icone.svg" />
+    <link rel="stylesheet" href="../dial/codigos/font.css">
+    <link rel="stylesheet" href="../dial/codigos/app.css">
 
-    <script src="../codigos/jquery.js"></script>
-    <script src="../codigos/navigation.js"></script>
-    <script src="../codigos/util.js"></script>
+    <script src="../dial/codigos/jquery.js"></script>
+    <script src="../dial/codigos/navigation.js"></script>
+    <script src="../dial/codigos/util.js"></script>
   </head>
   <body>
     <div id="container">
@@ -71,7 +71,7 @@ for (var i = 0; i < maxCH; i++) {
 		if (favoritos[i].name=="A Turma do Chaves") {ipage = "chaves.aovivo";tpage = "A Turma do Chaves";}
 		html += "<div class='item' id='"+npage+"' onclick=window.location.href='"+npage+"'>";
 		//html += "<iframe src='"+npage.toLowerCase()+"' width='100%' height='100%' loading='lazy'></iframe>";
-	    html += "<img src='../imagens/"+ipage+".png' width='100%' height='100%'></img>";
+	    html += "<img src='../dial/imagens/"+ipage+".png' width='100%' height='100%'></img>";
 		html += "<div class='letra'>"+tpage.toUpperCase()+"<br>"+ipage+"</div>";
 		html += "</div>";
 		divide++;
