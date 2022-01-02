@@ -16,7 +16,7 @@ document.title = diretorio;
 for (var i = 0; i < conta; i++) {
 	if (pagina[i].type=="folder") {
 		npage = pagina[i].name.toLowerCase();
-		npage = "paginas/"+npage+".htm";
+		npage = npage;
 	} else {
 		npage = pagina[i].url;
 		tpage = npage.split("\/");
