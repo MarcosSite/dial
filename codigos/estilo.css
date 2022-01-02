@@ -159,7 +159,6 @@ opacity:1
 .contexto {text-align: center; box-shadow: #909090 0em 0.1em 0.2em; display: inline-block; overflow: hidden; position: relative; background: #F5F5F5; cursor: hand;}
 .painel {-ms-zoom: 0.25; -moz-transform: scale(0.25); -moz-transform-origin: 0 0; -o-transform: scale(0.25); -o-transform-origin: 0 0; -webkit-transform: scale(0.25); -webkit-transform-origin: 0 0;}
 .painel {width: 200%; height: 200%;}
-.tela {opacity: 0; transition: all 300ms ease-in-out; width: 200%; height: 180%;}
-//.tela {width: 200%; height: 165%;}
+.tela {width: 200%; height: 165%;}
 .titulo {width: 200%; height: 35%; margin-top: 10; font-family: Arial; font-size: 400%}
 .painel:after {content: ""; display: block; position: absolute; width: 200%; height: 200%; top: 0; left: 0; right: 0; bottom: 0;}
