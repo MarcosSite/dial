@@ -27,7 +27,7 @@ for (var i = 0; i < conta; i++) {
 	if(window.innerHeight > window.innerWidth) {html += "<div class='contexto' style='width: 49.3%; height: 18%' onclick=window.location.href='"+npage+"'>";}
 	else {html += "<div class='contexto' style='width: 24.4%; height: 32%' onclick=window.location.href='"+npage+"'>";}
 	html += "<div class='painel'><div class='tela'>";
-	if (pagina[i].type=="folder") {html += "<iframe src='"+npage+"' width='100%' height='100%'></iframe>";}
+	if (pagina[i].type=="folder") {html += "<iframe src='"+npage+"' style='border:0;' width='100%' height='100%'></iframe>";}
 	else {html += "<img src='"+ipage+".png' width='100%' height='100%'></img>";}
 	html += "</div><div class='titulo'>"+pagina[i].name+"</div>";
 	html += "</div></div> "; 
