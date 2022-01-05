@@ -6,6 +6,6 @@ body {opacity:0; opacity:1; height:100%; background: #264264; cursor: default; m
 .contexto {text-align: center; border-style: solid; border-width: 0px; padding: 0em; margin: 0em 0em; border-radius: 0.1em; box-shadow: #090909 0em 0.1em 0.2em; display: inline-block; overflow: hidden; position: relative; cursor: hand;}
 .painel {-ms-zoom: 0.25; -moz-transform: scale(0.25); -moz-transform-origin: 0 0; -o-transform: scale(0.25); -o-transform-origin: 0 0; -webkit-transform: scale(0.25); -webkit-transform-origin: 0 0;}
 .painel {width: 200%; height: 200%;}
-.tela {width: 200%; height: 165%;}
-.titulo {color: #F5F5F5; width: 200%; height: 35%; margin-top: 10; font-family: Arial; font-size: 400%}
+.tela {width: 200%; height: 170%;}
+.titulo {color: #F5F5F5; width: 200%; height: 30%; margin-top: 10; font-family: Arial; font-size: 400%}
 .painel:after {content: ""; display: block; position: absolute; width: 200%; height: 200%; top: 0; left: 0; right: 0; bottom: 0;}
