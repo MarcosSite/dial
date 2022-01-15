@@ -9,32 +9,25 @@
 <script>
 var conta = 0;
 $.getJSON("https://marcosfransa.github.io/dial/codigos/Bookmarks", function(obj) {
-var pagina = obj.roots.bookmark_bar.children[1].children;
-conta = pagina.length;
-var html = "", miniatura = -1;
-document.title = obj.roots.bookmark_bar.children[1].name;
-for (var i = 0; i < conta; i++) {
-	if (pagina[i].type=="folder") {
-		npage = i;
-	} else {
-		npage = pagina[i].url;
-		miniatura++;
+	var pagina = obj.roots.bookmark_bar.children[1].children;
+	conta = pagina.length;
+	var html = "", miniatura = -1;
+	document.title = obj.roots.bookmark_bar.children[1].name;
+	for (var i = 0; i < conta; i++) {
+		if (pagina[i].type=="folder") {
+			npage = i;
+		} else {
+			npage = pagina[i].url;
+			miniatura++;
+		}
+		html += "<div class='contexto' onclick=window.location.href='"+npage+"'>";
+		html += "<div class='painel'><div class='tela'>";
+		if (pagina[i].type=="folder") {html += "<iframe src='"+npage+"' style='border:0;' width='100%' height='100%'></iframe>";}
+		else {html += "<img src='"+miniatura+".png' width='100%' height='100%'></img>";}
+		html += "</div><div class='titulo'>"+pagina[i].name+"</div>";
+		html += "</div></div> "; 
 	}
-	if(window.innerHeight > window.innerWidth) {html += "<div class='contexto' style='width: 49.3%; height: 18%' onclick=window.location.href='"+npage+"'>";}
-	else {html += "<div class='contexto' style='width: 24.4%; height: 32%' onclick=window.location.href='"+npage+"'>";}
-	html += "<div class='painel'><div class='tela'>";
-	if (pagina[i].type=="folder") {html += "<iframe src='"+npage+"' style='border:0;' width='100%' height='100%'></iframe>";}
-	else {html += "<img src='"+miniatura+".png' width='100%' height='100%'></img>";}
-	html += "</div><div class='titulo'>"+pagina[i].name+"</div>";
-	html += "</div></div> "; 
-}
-Display.innerHTML = html;
-});
-window.addEventListener('resize', function () {
-for (var j = 0; j < conta; j++) {
-	if (window.innerHeight > window.innerWidth) {document.getElementsByClassName('contexto')[j].style.width = '49.3%';document.getElementsByClassName('contexto')[j].style.height = '18%';}
-	else {document.getElementsByClassName('contexto')[j].style.width = '24.4%';document.getElementsByClassName('contexto')[j].style.height = '32%';}
-}
+	Display.innerHTML = html;
 });
 </script>
 </head>
