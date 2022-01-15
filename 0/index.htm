@@ -2,17 +2,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-<link rel="shortcut icon" type="image/png" href="dial.png"/>
+<link rel="shortcut icon" type="image/png" href="../dial.png"/>
 <title>...</title>
-<link type="text/css" rel="stylesheet" href="codigos/estilo.css" />
-<script src="codigos/jquery.js"></script>
+<link type="text/css" rel="stylesheet" href="../codigos/estilo.css" />
+<script src="../codigos/jquery.js"></script>
 <script>
 var conta = 0;
 $.getJSON("https://marcosfransa.github.io/dial/codigos/Bookmarks", function(obj) {
-	var pagina = obj.roots.bookmark_bar.children;
+	var pagina = obj.roots.bookmark_bar.children[0].children;
 	conta = pagina.length;
 	var html = "", miniatura = -1;
-	document.title = obj.roots.bookmark_bar.name;
+	document.title = obj.roots.bookmark_bar.children[0].name;
 	for (var i = 0; i < conta; i++) {
 		if (pagina[i].type=="folder") {
 			npage = i;
