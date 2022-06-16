@@ -1,1 +1,38 @@
-
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<link rel="shortcut icon" type="image/png" href="../dial.png"/>
+<title>...</title>
+<link type="text/css" rel="stylesheet" href="../codigos/estilo.css" />
+<script src="../codigos/jquery.js"></script>
+<script>
+var conta = 0;
+$.getJSON("https://marcosfransa.github.io/dial/codigos/Bookmarks", function(obj) {
+	var pagina = obj.roots.bookmark_bar.children[0].children;
+	conta = pagina.length;
+	var html = "", miniatura = "";
+	document.title = obj.roots.bookmark_bar.name;
+	for (var i = 0; i < conta; i++) {
+		if (pagina[i].type=="folder") {
+			npage = pagina[i].name+"/index.htm";
+		} else {
+			npage = pagina[i].url;
+			miniatura = pagina[i].name;
+			miniatura = miniatura.replace(/\\/,"").replace(/\//,"").replace(/:/g,"").replace(/\*/g,"").replace(/\?/g,"").replace(/\"/g,"").replace(/</g,"").replace(/>/g,"").replace(/\|/g,"");
+		}
+		html += "<div class='contexto' onclick=window.location.href='"+npage+"'>";
+		html += "<div class='painel'><div class='tela'>";
+		if (pagina[i].type=="folder") {html += "<iframe src='"+npage+"' style='border:0;' width='100%' height='100%'></iframe>";}
+		else {html += "<img src='"+miniatura+".png' width='100%' height='100%'></img>";}
+		html += "</div><div class='titulo'>"+pagina[i].name+"</div>";
+		html += "</div></div> "; 
+	}
+	Display.innerHTML = html;
+});
+</script>
+</head>
+<body onselectstart="return false">
+<span id="Display"></span>
+</body>
+</html>
