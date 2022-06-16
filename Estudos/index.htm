@@ -19,7 +19,7 @@ $.getJSON("https://marcosfransa.github.io/dial/codigos/Bookmarks", function(obj)
 		} else {
 			npage = pagina[i].url;
 			miniatura = pagina[i].name;
-			miniatura = miniatura.replace(/\\/,"").replace(/\//,"").replace(/:/g,"").replace(/\*/g,"").replace(/\?/g,"").replace(/\"/g,"").replace(/</g,"").replace(/>/g,"").replace(/\|/g,"");
+			miniatura = miniatura.replace(/\\/,"").replace(/\//,"").replace(/:/g,"").replace(/\*/g,"").replace(/\?/g,"").replace(/\"/g,"").replace(/</g,"").replace(/>/g,"").replace(/\|/g,"").replace(/\%/g,"%");
 		}
 		html += "<div class='contexto' onclick=window.location.href='"+npage+"'>";
 		html += "<div class='painel'><div class='tela'>";
