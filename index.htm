@@ -6,25 +6,31 @@
 <title>...</title>
 <link type="text/css" rel="stylesheet" href="codigos/estilo.css" />
 <script src="codigos/jquery.js"></script>
+<script src="codigos/Bookmarks.js"></script>
 <script>
 var conta = 0;
 $.getJSON("https://marcosfransa.github.io/dial/codigos/Bookmarks", function(obj) {
-	var pagina = obj.roots.bookmark_bar.children;
+	var loc = location.search.substring(1,location.search.length);
+	var params = loc.split("&");
+	var param1 = params[0].substring(params[0].indexOf('='),params[0].length);
+	var param1 = param1.substring(1,param1.length);
+	if (param1=="") {var pagina = obj.roots.bookmark_bar.children;var aba = obj.roots.bookmark_bar.name;}else{var pagina = obj.roots.bookmark_bar.children[param1].children;var aba = obj.roots.bookmark_bar.children[param1].name;}
 	conta = pagina.length;
 	var html = "", miniatura = "";
-	document.title = obj.roots.bookmark_bar.name;
+	document.title = aba;
 	for (var i = 0; i < conta; i++) {
 		if (pagina[i].type=="folder") {
-			npage = pagina[i].name+"/index.htm";
+			npage = i;
 		} else {
 			npage = pagina[i].url;
 			miniatura = pagina[i].name;
 			miniatura = miniatura.replace(/\\/,"").replace(/\//,"").replace(/:/g,"").replace(/\*/g,"").replace(/\?/g,"").replace(/\"/g,"").replace(/</g,"").replace(/>/g,"").replace(/\|/g,"").replace(/\%/g,"perc");
 		}
-		html += "<div class='contexto' onclick=window.location.href='"+npage+"'>";
+		if(pagina[i].type=="folder") {html += "<div class='contexto' onclick=window.location.href='index.htm?p="+npage+"'>";}
+		else {html += "<div class='contexto' onclick=window.location.href='"+npage+"'>";}
 		html += "<div class='painel'><div class='tela'>";
-		if (pagina[i].type=="folder") {html += "<iframe src='"+npage+"' style='border:0;' width='100%' height='100%'></iframe>";}
-		else {html += "<img src='"+miniatura+".png' width='100%' height='100%'></img>";}
+		if (pagina[i].type=="folder") {html += "<iframe src='index.htm?p="+npage+"' style='border:0;' width='100%' height='100%'></iframe>";}
+		else {html += "<img src='imagens/"+miniatura+".png' width='100%' height='100%'></img>";}
 		html += "</div><div class='titulo'>"+pagina[i].name+"</div>";
 		html += "</div></div> "; 
 	}
