@@ -30,7 +30,7 @@ $.getJSON("https://marcosfransa.github.io/dial/codigos/Bookmarks", function(obj)
 		else {html += "<div class='contexto' onclick=window.location.href='"+npage+"'>";}
 		html += "<div class='painel'><div class='tela'>";
 		if (pagina[i].type=="folder") {html += "<iframe src='index.htm?p="+npage+"' style='border:0;' width='100%' height='100%'></iframe>";}
-		else {html += "<img src='imagens/"+miniatura+".png' width='100%' height='100%'></img>";}
+		else {html += "<img src='"+aba+"/"+miniatura+".png' width='100%' height='100%'></img>";}
 		html += "</div><div class='titulo'>"+pagina[i].name+"</div>";
 		html += "</div></div> "; 
 	}
