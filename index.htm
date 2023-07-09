@@ -13,44 +13,45 @@
 <script>
 var conta = 0;
 $.getJSON("https://marcosfransa.github.io/dial/codigos/Bookmarks", function(obj) {
-var loc = location.search.substring(1,location.search.length);
-var params = loc.split("&");
-var param1 = params[0].substring(params[0].indexOf('='),params[0].length);
-var param1 = param1.substring(1,param1.length);
-var obj = JSON.parse(favorito);
-//console.log(favorito);
-if (param1=="") {var pagina = obj.roots.bookmark_bar.children;}else{var pagina = obj.roots.bookmark_bar.children[param1].children;}
-conta = pagina.length;
-var html = "", miniatura = "";
-document.title = obj.roots.bookmark_bar.name;
-for (var i = 0; i < conta; i++) {
-	if (pagina[i].type=="folder") {
-		npage = i;
-	} else {
-		npage = pagina[i].url;
-		//wiki = npage.split("\/");
-		//wiki = wiki[2].substring(0,4);
-		miniatura = pagina[i].name;
-		miniatura = miniatura.replace(/\\/,"").replace(/\//,"").replace(/:/g,"").replace(/\*/g,"").replace(/\?/g,"").replace(/\"/g,"").replace(/</g,"").replace(/>/g,"").replace(/|/g,"");
-		//console.log(wiki);
+	var loc = location.search.substring(1,location.search.length);
+	var params = loc.split("&");
+	var param1 = params[0].substring(params[0].indexOf('='),params[0].length);
+	var param1 = param1.substring(1,param1.length);
+	var obj = JSON.parse(favorito);
+	//console.log(favorito);
+	if (param1=="") {var pagina = obj.roots.bookmark_bar.children;}else{var pagina = obj.roots.bookmark_bar.children[param1].children;}
+	conta = pagina.length;
+	var html = "", miniatura = "";
+	document.title = obj.roots.bookmark_bar.name;
+	for (var i = 0; i < conta; i++) {
+		if (pagina[i].type=="folder") {
+			npage = i;
+		} else {
+			npage = pagina[i].url;
+			//wiki = npage.split("\/");
+			//wiki = wiki[2].substring(0,4);
+			miniatura = pagina[i].name;
+			miniatura = miniatura.replace(/\\/,"").replace(/\//,"").replace(/:/g,"").replace(/\*/g,"").replace(/\?/g,"").replace(/\"/g,"").replace(/</g,"").replace(/>/g,"").replace(/|/g,"");
+			//console.log(wiki);
+		}
+		//if (npage.indexOf("Default+Administrator+View")>=0 || npage.indexOf("ConsultarRequisicoes")>=0) npage = "";
+		if(pagina[i].type=="folder") {html += "<div class='contexto' style='width: 24.7%; height: 32%' onclick=window.location.href='index.htm?p="+npage+"'>";}
+		else {html += "<div class='contexto' style='width: 24.7%; height: 32%' onclick=window.open('"+npage+"');>";}
+		html += "<div class='painel'><div class='tela'>";
+		if (pagina[i].type=="folder") {html += "<iframe src='index.htm?p="+npage+"' style='border:0;' width='100%' height='100%'></iframe>";}
+		//else {if(!"imagens/"+miniatura+".png") {html += "<img src='imagens/vazio.png' width='100%' height='100%'></img>";}
+		else{html += "<img src='imagens/"+miniatura+".png' width='100%' height='100%'></img>";}//}
+		html += "</div><div class='titulo'>"+pagina[i].name+"</div>";
+		html += "</div></div> "; 
 	}
-	//if (npage.indexOf("Default+Administrator+View")>=0 || npage.indexOf("ConsultarRequisicoes")>=0) npage = "";
-	if(pagina[i].type=="folder") {html += "<div class='contexto' style='width: 24.7%; height: 32%' onclick=window.location.href='index.htm?p="+npage+"'>";}
-	else {html += "<div class='contexto' style='width: 24.7%; height: 32%' onclick=window.open('"+npage+"');>";}
-	html += "<div class='painel'><div class='tela'>";
-	if (pagina[i].type=="folder") {html += "<iframe src='index.htm?p="+npage+"' style='border:0;' width='100%' height='100%'></iframe>";}
-	//else {if(!"imagens/"+miniatura+".png") {html += "<img src='imagens/vazio.png' width='100%' height='100%'></img>";}
-	else{html += "<img src='imagens/"+miniatura+".png' width='100%' height='100%'></img>";}//}
-	html += "</div><div class='titulo'>"+pagina[i].name+"</div>";
-	html += "</div></div> "; 
-}
-Display.innerHTML = html;
+	Display.innerHTML = html;
 
-/*window.addEventListener('resize', function () {
-for (var j = 0; j < conta; j++) {
-	if (window.innerHeight > window.innerWidth) {document.getElementsByClassName('contexto')[j].style.width = '49.3%';document.getElementsByClassName('contexto')[j].style.height = '18%';}
-	else {document.getElementsByClassName('contexto')[j].style.width = '24.4%';document.getElementsByClassName('contexto')[j].style.height = '32%';}
-}
-});*/
+	/*window.addEventListener('resize', function () {
+		for (var j = 0; j < conta; j++) {
+			if (window.innerHeight > window.innerWidth) {document.getElementsByClassName('contexto')[j].style.width = '49.3%';document.getElementsByClassName('contexto')[j].style.height = '18%';}
+			else {document.getElementsByClassName('contexto')[j].style.width = '24.4%';document.getElementsByClassName('contexto')[j].style.height = '32%';}
+		}
+	}
+});
 </script>
 </html>
