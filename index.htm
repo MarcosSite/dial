@@ -36,7 +36,7 @@ $.getJSON("https://marcosfransa.github.io/dial/codigos/Bookmarks", function(obj)
 		}
 		//if (npage.indexOf("Default+Administrator+View")>=0 || npage.indexOf("ConsultarRequisicoes")>=0) npage = "";
 		if(pagina[i].type=="folder") {html += "<div class='contexto' onclick=window.location.href='index.htm?p="+npage+"'>";}
-		else {html += "<div class='contexto' style='width: 24.7%; height: 32%' onclick=window.open('"+npage+"');>";}
+		else {html += "<div class='contexto' onclick=window.open('"+npage+"');>";}
 		html += "<div class='painel'><div class='tela'>";
 		if (pagina[i].type=="folder") {html += "<iframe src='index.htm?p="+npage+"' style='border:0;' width='100%' height='100%'></iframe>";}
 		//else {if(!"imagens/"+miniatura+".png") {html += "<img src='imagens/vazio.png' width='100%' height='100%'></img>";}
