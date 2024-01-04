@@ -19,7 +19,7 @@ $.getJSON("https://marcosfransa.github.io/dial/codigos/Bookmarks", function(obj)
 	var param1 = param1.substring(1,param1.length);
 	//var obj = JSON.parse(favorito);
 	//console.log(favorito);
-	alert(obj.roots.bookmark_bar.children.name);
+	alert(obj.roots.bookmark_bar.children.children.name);
 	if (param1=="") {var pagina = obj.roots.bookmark_bar.children.children;}else{var pagina = obj.roots.bookmark_bar.children.children[param1].children;}
 	conta = pagina.length;
 	var html = "", miniatura = "";
