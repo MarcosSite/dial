@@ -19,11 +19,11 @@ $.getJSON("https://marcosfransa.github.io/dial/codigos/Bookmarks", function(obj)
 	var param1 = param1.substring(1,param1.length);
 	//var obj = JSON.parse(favorito);
 	//console.log(favorito);
-	alert(obj.roots.bookmark_bar.children[param1].name);
-	if (param1=="") {var pagina = obj.roots.bookmark_bar.children;}else{var pagina = obj.roots.bookmark_bar.children[param1].children;}
+	alert(obj.roots.bookmark_bar.children.name);
+	if (param1=="") {var pagina = obj.roots.bookmark_bar.children.children;}else{var pagina = obj.roots.bookmark_bar.children.children[param1].children;}
 	conta = pagina.length;
 	var html = "", miniatura = "";
-	document.title = obj.roots.bookmark_bar.name;
+	document.title = obj.roots.bookmark_bar.children.name;
 	for (var i = 0; i < conta; i++) {
 		if (pagina[i].type=="folder") {
 			npage = i;
