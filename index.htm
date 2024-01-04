@@ -23,7 +23,7 @@ $.getJSON("https://marcosfransa.github.io/dial/codigos/Bookmarks", function(obj)
 	if (param1=="") {var pagina = obj.roots.bookmark_bar.children;}else{var pagina = obj.roots.bookmark_bar.children[param1].children;}
 	conta = pagina.length;
 	var html = "", miniatura = "";
-	document.title = obj.roots.bookmark_bar.children[param1].name;
+	document.title = obj.roots.bookmark_bar.name;
 	for (var i = 0; i < conta; i++) {
 		if (pagina[i].type=="folder") {
 			npage = i;
