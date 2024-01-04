@@ -21,7 +21,7 @@ $.getJSON("https://marcosfransa.github.io/dial/codigos/Bookmarks", function(obj)
 	//console.log(favorito);
 	//alert(obj.roots.bookmark_bar.children.children.name);
 	if (param1=="") {var pagina = obj.roots.bookmark_bar.children[0].children;}else{var pagina = obj.roots.bookmark_bar.children[0].children[param1].children;}
-	alert(pagina);
+	//alert(pagina);
 	conta = pagina.length;
 	var html = "", miniatura = "";
 	document.title = obj.roots.bookmark_bar.children[0].name;
